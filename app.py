@@ -10,10 +10,12 @@ from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, WebRtcMode
 from collections import Counter
 
 import pathlib
+import os
 
-# --- Patch PosixPath untuk Windows ---
-temp = pathlib.PosixPath
-pathlib.PosixPath = pathlib.WindowsPath
+# --- Patch agar PosixPath di Linux bisa baca WindowsPath dari file.pkl ---
+if os.name == "nt":
+    pathlib.PosixPath = pathlib.WindowsPath
+
 
 # --- Fungsi Preprocessing ---
 def preprocess_image(img):
