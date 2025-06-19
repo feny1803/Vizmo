@@ -9,12 +9,14 @@ from fastai.vision.all import load_learner, PILImage
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, WebRtcMode
 from collections import Counter
 
-import pathlib
-import os
+import pathlib, os
 
-# --- Patch agar PosixPath di Linux bisa baca WindowsPath dari file.pkl ---
-if os.name == "nt":
+# ── Patch Pathlib agar file .pkl buatan Windows & Linux bisa dibaca lintas‑OS ──
+if os.name == "nt":                  # Windows
     pathlib.PosixPath = pathlib.WindowsPath
+else:                                # Linux / macOS
+    pathlib.WindowsPath = pathlib.PosixPath
+
 
 
 # --- Fungsi Preprocessing ---
