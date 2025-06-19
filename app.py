@@ -11,11 +11,12 @@ from collections import Counter
 
 import pathlib, os
 
-# ── Patch Pathlib agar file .pkl buatan Windows & Linux bisa dibaca lintas‑OS ──
-if os.name == "nt":                  # Windows
+# ── Patch lintas‑OS: file .pkl buatan Windows & Linux bisa dibaca di mana saja ──
+if os.name == "nt":                  # jalankan di Windows
     pathlib.PosixPath = pathlib.WindowsPath
-else:                                # Linux / macOS
+else:                                # jalankan di Linux/macOS
     pathlib.WindowsPath = pathlib.PosixPath
+
 
 
 
